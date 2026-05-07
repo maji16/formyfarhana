@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for my favorite person 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Satisfy&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --pink-soft: #FFD6E7;
+    --pink-mid: #FFB3D1;
+    --pink-hot: #FF6BAD;
+    --pink-deep: #E91E8C;
+    --cream: #FFF5F9;
+    --blush: #FFE8F2;
+    --text-dark: #4A1942;
+    --text-mid: #8B3A7E;
+    --gold: #F7C5A8;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='24' font-size='24'%3E🌸%3C/text%3E%3C/svg%3E") 16 16, auto;
+  }
+
+  /* ── PETALS ── */
+  .petal-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .petal {
+    position: absolute; top: -60px; font-size: 1.4rem;
+    animation: fall linear infinite;
+    opacity: 0.7;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-60px) rotate(0deg) translateX(0); opacity: 0.8; }
+    50% { transform: translateY(50vh) rotate(180deg) translateX(30px); }
+    100% { transform: translateY(110vh) rotate(360deg) translateX(-20px); opacity: 0; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+    background: linear-gradient(160deg, #FFE8F2 0%, #FFD6E7 40%, #FFC2E0 70%, #FFB3D1 100%);
+    text-align: center; padding: 2rem;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(255,182,193,0.5) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    background: white; border-radius: 50px;
+    padding: 0.4rem 1.4rem; font-size: 0.85rem;
+    color: var(--pink-deep); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 1.5rem; display: inline-block;
+    box-shadow: 0 4px 20px rgba(233,30,140,0.18);
+  }
+  .hero h1 {
+    font-family: 'Satisfy', cursive;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    color: var(--text-dark);
+    line-height: 1.1; margin-bottom: 0.5rem;
+    text-shadow: 3px 3px 0 rgba(255,107,173,0.2);
+  }
+  .hero h1 span { color: var(--pink-deep); }
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-style: italic; color: var(--text-mid);
+    margin-bottom: 2.5rem; max-width: 500px;
+  }
+  .hero-decorations { font-size: 2rem; margin-bottom: 1.5rem; letter-spacing: 0.4rem; }
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem;
+    font-size: 0.8rem; color: var(--text-mid); letter-spacing: 0.1em;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section { position: relative; z-index: 1; }
+  .section-title {
+    font-family: 'Satisfy', cursive;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--text-dark);
+    text-align: center; margin-bottom: 0.5rem;
+  }
+  .section-sub {
+    text-align: center; color: var(--text-mid);
+    font-size: 0.95rem; margin-bottom: 3rem; font-style: italic;
+  }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ── PHOTOS ── */
+  .photos-section {
+    padding: 6rem 2rem;
+    background: white;
+  }
+  .polaroid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
+    justify-items: center;
+  }
+  .polaroid {
+    background: white;
+    padding: 1rem 1rem 3.5rem 1rem;
+    box-shadow: 0 8px 32px rgba(233,30,140,0.12), 0 2px 8px rgba(0,0,0,0.08);
+    width: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  .polaroid:nth-child(1) { transform: rotate(-2.5deg); }
+  .polaroid:nth-child(2) { transform: rotate(1.8deg); }
+  .polaroid:nth-child(3) { transform: rotate(-1.2deg); }
+  .polaroid:nth-child(4) { transform: rotate(2.5deg); }
+  .polaroid:nth-child(5) { transform: rotate(-0.8deg); }
+  .polaroid:nth-child(6) { transform: rotate(1.5deg); }
+  .polaroid:hover {
+    transform: rotate(0deg) scale(1.06);
+    box-shadow: 0 16px 48px rgba(233,30,140,0.22);
+    z-index: 10;
+  }
+  .polaroid-img {
+    width: 100%; aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-mid) 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0.5rem;
+    font-size: 0.75rem; color: var(--text-mid); text-align: center;
+    padding: 1rem; overflow: hidden;
+  }
+  .polaroid-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    position: absolute; top: 0; left: 0;
+  }
+  .polaroid-img-wrap { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; }
+  .photo-placeholder-icon { font-size: 2rem; }
+  .polaroid-caption {
+    position: absolute; bottom: 0.9rem; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Satisfy', cursive;
+    font-size: 1rem; color: var(--text-mid);
+    padding: 0 0.5rem;
+  }
+  .tape {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 24px;
+    background: rgba(255, 182, 193, 0.55);
+    border-radius: 2px;
+  }
+
+  /* ── LETTER / ENVELOPE ── */
+  .letter-section {
+    padding: 6rem 2rem;
+    background: linear-gradient(180deg, var(--blush) 0%, var(--cream) 100%);
+    text-align: center;
+  }
+  .envelope-wrap { display: flex; justify-content: center; }
+  .envelope {
+    position: relative; width: min(440px, 90vw);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .envelope:hover { transform: scale(1.02); }
+  .env-body {
+    background: white;
+    border: 2px solid var(--pink-mid);
+    border-radius: 4px;
+    padding-top: 60%;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(233,30,140,0.14);
+  }
+  .env-flap {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 55%;
+    transform-origin: top center;
+    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    transform-style: preserve-3d;
+  }
+  .env-flap-front {
+    position: absolute; inset: 0;
+    background: white;
+    border: 2px solid var(--pink-mid);
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    border-radius: 4px 4px 0 0;
+  }
+  .env-flap-back {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--pink-soft), var(--pink-mid));
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    border-radius: 4px 4px 0 0;
+    backface-visibility: hidden;
+  }
+  .env-seal {
+    position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 2rem; z-index: 2;
+    transition: opacity 0.3s ease;
+  }
+  .env-bottom-left { position: absolute; bottom: 0; left: 0; width: 55%; height: 100%; background: var(--pink-soft); opacity: 0.15; clip-path: polygon(0 100%, 0 0, 100% 100%); }
+  .env-bottom-right { position: absolute; bottom: 0; right: 0; width: 55%; height: 100%; background: var(--pink-mid); opacity: 0.12; clip-path: polygon(100% 0, 0 100%, 100% 100%); }
+  .env-click-hint {
+    margin-top: 1.2rem; font-size: 0.85rem; color: var(--text-mid);
+    font-style: italic; letter-spacing: 0.05em;
+  }
+
+  /* Letter modal */
+  .letter-modal {
+    display: none; position: fixed; inset: 0;
+    background: rgba(74, 25, 66, 0.6);
+    z-index: 1000; align-items: center; justify-content: center;
+    padding: 2rem; backdrop-filter: blur(6px);
+  }
+  .letter-modal.open { display: flex; }
+  .letter-paper {
+    background: #FFFDF9;
+    max-width: 520px; width: 100%;
+    padding: 3rem 2.5rem;
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(233,30,140,0.25);
+    position: relative;
+    max-height: 85vh; overflow-y: auto;
+    border-top: 6px solid var(--pink-hot);
+    animation: slideUp 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .letter-paper::before {
+    content: '';
+    position: absolute; top: 0; left: 3rem; right: 3rem; bottom: 0;
+    background: repeating-linear-gradient(transparent, transparent 31px, rgba(255,107,173,0.15) 31px, rgba(255,107,173,0.15) 32px);
+    pointer-events: none;
+  }
+  .letter-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--pink-soft); border: none; border-radius: 50%;
+    width: 36px; height: 36px; cursor: pointer;
+    font-size: 1.2rem; color: var(--pink-deep);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .letter-close:hover { background: var(--pink-mid); }
+  .letter-date {
+    font-family: 'Satisfy', cursive; color: var(--text-mid);
+    font-size: 1rem; margin-bottom: 1.5rem;
+  }
+  .letter-greeting {
+    font-family: 'Satisfy', cursive; font-size: 1.6rem;
+    color: var(--text-dark); margin-bottom: 1rem;
+  }
+  .letter-body {
+    font-family: 'Nunito', sans-serif; font-size: 1rem;
+    line-height: 2; color: #5a3352;
+    white-space: pre-line;
+    position: relative; z-index: 1;
+  }
+  .letter-sign {
+    font-family: 'Satisfy', cursive; font-size: 1.3rem;
+    color: var(--pink-deep); margin-top: 2rem; text-align: right;
+  }
+
+  /* ── REASONS ── */
+  .reasons-section {
+    padding: 6rem 2rem;
+    background: white;
+  }
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .reason-card {
+    background: linear-gradient(135deg, var(--cream) 0%, var(--blush) 100%);
+    border: 1.5px solid var(--pink-mid);
+    border-radius: 16px;
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .reason-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgba(233,30,140,0.18);
+  }
+  .reason-card::before {
+    content: attr(data-num);
+    position: absolute; top: -10px; right: 12px;
+    font-family: 'Satisfy', cursive; font-size: 4rem;
+    color: rgba(233,30,140,0.07); line-height: 1;
+  }
+  .reason-emoji { font-size: 2rem; margin-bottom: 0.6rem; }
+  .reason-text {
+    font-size: 0.95rem; color: var(--text-dark); line-height: 1.6;
+    font-weight: 600;
+  }
+
+  /* ── MEMORIES JAR ── */
+  .memories-section {
+    padding: 6rem 2rem;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--blush) 100%);
+  }
+  .jar-container { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; max-width: 700px; margin: 0 auto; }
+  .memory-tag {
+    background: white;
+    border: 1.5px solid var(--pink-mid);
+    border-radius: 50px;
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    font-size: 0.9rem; font-weight: 600; color: var(--text-mid);
+    transition: all 0.25s ease;
+    user-select: none;
+    position: relative;
+  }
+  .memory-tag::before { content: '🎀 '; }
+  .memory-tag:hover { background: var(--pink-soft); transform: scale(1.06); border-color: var(--pink-hot); }
+  .memory-tag.open { background: var(--pink-hot); color: white; border-color: var(--pink-hot); }
+  .memory-popup {
+    display: none; position: fixed; inset: 0;
+    background: rgba(74,25,66,0.5); z-index: 1000;
+    align-items: center; justify-content: center;
+    padding: 2rem; backdrop-filter: blur(4px);
+  }
+  .memory-popup.open { display: flex; }
+  .memory-card-pop {
+    background: white; border-radius: 20px;
+    padding: 2.5rem 2rem; max-width: 380px; width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(233,30,140,0.25);
+    animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .memory-card-pop .mem-emoji { font-size: 3rem; margin-bottom: 1rem; }
+  .memory-card-pop .mem-title {
+    font-family: 'Satisfy', cursive; font-size: 1.5rem;
+    color: var(--pink-deep); margin-bottom: 0.8rem;
+  }
+  .memory-card-pop .mem-text {
+    font-size: 1rem; color: var(--text-mid); line-height: 1.7;
+  }
+  .mem-close-btn {
+    margin-top: 1.5rem; padding: 0.6rem 2rem;
+    background: var(--pink-hot); color: white; border: none;
+    border-radius: 50px; cursor: pointer; font-family: 'Nunito', sans-serif;
+    font-weight: 700; font-size: 0.9rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .mem-close-btn:hover { background: var(--pink-deep); transform: scale(1.05); }
+
+  /* ── QUOTE ── */
+  .quote-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--pink-hot) 0%, var(--pink-deep) 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .quote-section::before {
+    content: '❝'; position: absolute; top: -1rem; left: 2rem;
+    font-size: 12rem; color: rgba(255,255,255,0.08);
+    font-family: Georgia, serif; line-height: 1;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-style: italic; color: white;
+    max-width: 700px; margin: 0 auto 1.5rem;
+    line-height: 1.6; position: relative; z-index: 1;
+  }
+  .quote-attr {
+    font-family: 'Satisfy', cursive; color: rgba(255,255,255,0.75);
+    font-size: 1.1rem;
+  }
+
+  /* ── GALLERY SECOND ── */
+  .gallery2-section { padding: 5rem 2rem; background: white; }
+  .sticker-row {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 2rem; max-width: 900px; margin: 0 auto;
+  }
+  .sticker-frame {
+    width: 170px; flex-shrink: 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(233,30,140,0.14);
+    transition: transform 0.3s;
+  }
+  .sticker-frame:hover { transform: rotate(0deg) scale(1.08); }
+  .sticker-img-area {
+    width: 100%; height: 170px;
+    background: linear-gradient(135deg, var(--pink-soft), var(--pink-mid));
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; font-size: 0.72rem; color: var(--text-mid);
+    text-align: center; padding: 0.5rem; gap: 0.3rem;
+    position: relative; overflow: hidden;
+  }
+  .sticker-img-area img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .sticker-label {
+    padding: 0.5rem; text-align: center;
+    font-family: 'Satisfy', cursive; font-size: 0.85rem; color: var(--text-mid);
+    border-top: 1px solid var(--pink-soft);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: linear-gradient(135deg, var(--text-dark) 0%, #6B1A5F 100%);
+    padding: 4rem 2rem; text-align: center;
+  }
+  .footer-heart { font-size: 3rem; animation: heartbeat 1.5s ease-in-out infinite; }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+  }
+  .footer-names {
+    font-family: 'Satisfy', cursive; font-size: 2rem; color: var(--pink-mid);
+    margin: 1rem 0 0.5rem;
+  }
+  .footer-sub { color: rgba(255,255,255,0.45); font-size: 0.85rem; }
+
+  /* ── sparkle cursor trail ── */
+  .sparkle {
+    position: fixed; pointer-events: none; z-index: 9999;
+    font-size: 1.1rem; animation: sparkle-fade 0.8s forwards;
+  }
+  @keyframes sparkle-fade {
+    0% { opacity: 1; transform: scale(1) translateY(0); }
+    100% { opacity: 0; transform: scale(0.5) translateY(-30px); }
+  }
+
+  /* responsive */
+  @media (max-width: 600px) {
+    .polaroid { width: 170px; }
+    .reasons-grid { grid-template-columns: 1fr 1fr; }
+    .letter-paper { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Petals -->
+<div class="petal-container" id="petals"></div>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-badge">✨ a little something for you ✨</div>
+  <div class="hero-decorations">🌸 💗 🎀 💗 🌸</div>
+  <h1>happy birthday,<br><span>[ her name ]</span></h1>
+  <p class="hero-sub">to the girl who made my world infinitely more pink and wonderful</p>
+  <p class="scroll-hint">scroll down ↓</p>
+</section>
+
+<!-- ══════ POLAROID PHOTOS ══════ -->
+<section class="photos-section">
+  <div class="section-inner">
+    <h2 class="section-title">us, captured forever 📸</h2>
+    <p class="section-sub">— replace these with your actual photos! —</p>
+    <div class="polaroid-grid">
+
+      <div class="polaroid">
+        <div class="tape"></div>
+        <div class="polaroid-img-wrap">
+          <div class="polaroid-img">
+            <span class="photo-placeholder-icon">🌸</span>
+            <span>Your photo here<br><em>replace src with your image</em></span>
+            <!-- To add your photo: <img src="photo1.jpg" alt="us"> -->
+          </div>
+        </div>
+        <div class="polaroid-caption">[ memory 1 ]</div>
+      </div>
+
+      <div class="polaroid">
+        <div class="tape"></div>
+        <div class="polaroid-img-wrap">
+          <div class="polaroid-img">
+            <span class="photo-placeholder-icon">💕</span>
+            <span>Your photo here<br><em>replace src with your image</em></span>
+          </div>
+        </div>
+        <div class="polaroid-caption">[ memory 2 ]</div>
+      </div>
+
+      <div class="polaroid">
+        <div class="tape"></div>
+        <div class="polaroid-img-wrap">
+          <div class="polaroid-img">
+            <span class="photo-placeholder-icon">🎀</span>
+            <span>Your photo here<br><em>replace src with your image</em></span>
+          </div>
+        </div>
+        <div class="polaroid-caption">[ memory 3 ]</div>
+      </div>
+
+      <div class="polaroid">
+        <div class="tape"></div>
+        <div class="polaroid-img-wrap">
+          <div class="polaroid-img">
+            <span class="photo-placeholder-icon">✨</span>
+            <span>Your photo here<br><em>replace src with your image</em></span>
+          </div>
+        </div>
+        <div class="polaroid-caption">[ memory 4 ]</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ LETTER / ENVELOPE ══════ -->
+<section class="letter-section">
+  <div class="section-inner">
+    <h2 class="section-title">a letter from the heart 💌</h2>
+    <p class="section-sub">— click to open —</p>
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope" onclick="openLetter()">
+        <div class="env-body">
+          <div class="env-bottom-left"></div>
+          <div class="env-bottom-right"></div>
+          <div class="env-flap" id="envFlap">
+            <div class="env-flap-back"></div>
+            <div class="env-flap-front"></div>
+          </div>
+          <div class="env-seal" id="envSeal">💌</div>
+        </div>
+        <p class="env-click-hint">tap to open your letter 🎀</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Letter Modal -->
+<div class="letter-modal" id="letterModal" onclick="closeLetter(event)">
+  <div class="letter-paper" onclick="event.stopPropagation()">
+    <button class="letter-close" onclick="closeLetter()">✕</button>
+    <div class="letter-date">[ date ] 🌸</div>
+    <div class="letter-greeting">dear [ her name ],</div>
+    <div class="letter-body">
+[ Write your heartfelt letter here. Tell her how much she means to you, your favorite memories, what you love about her, and your wishes for her. This is your space — fill it with all the love in your heart. ]
+
+[ You can write multiple paragraphs, add inside jokes, and express everything you've always wanted to say. ]
+
+[ She's going to cry. And that's okay. 💕 ]
+    </div>
+    <div class="letter-sign">with all my love,<br>[ your name ] 🌸</div>
+  </div>
+</div>
+
+<!-- ══════ REASONS I LOVE YOU ══════ -->
+<section class="reasons-section">
+  <div class="section-inner">
+    <h2 class="section-title">reasons i love you ⭐</h2>
+    <p class="section-sub">— fill in your reasons, add more cards if you want! —</p>
+    <div class="reasons-grid">
+
+      <div class="reason-card" data-num="01">
+        <div class="reason-emoji">🌸</div>
+        <div class="reason-text">[ reason one — e.g. "the way you always know what to say" ]</div>
+      </div>
+
+      <div class="reason-card" data-num="02">
+        <div class="reason-emoji">💕</div>
+        <div class="reason-text">[ reason two — e.g. "your laugh is genuinely contagious" ]</div>
+      </div>
+
+      <div class="reason-card" data-num="03">
+        <div class="reason-emoji">✨</div>
+        <div class="reason-text">[ reason three — e.g. "you make ordinary moments magical" ]</div>
+      </div>
+
+      <div class="reason-card" data-num="04">
+        <div class="reason-emoji">🎀</div>
+        <div class="reason-text">[ reason four ]</div>
+      </div>
+
+      <div class="reason-card" data-num="05">
+        <div class="reason-emoji">🌷</div>
+        <div class="reason-text">[ reason five ]</div>
+      </div>
+
+      <div class="reason-card" data-num="06">
+        <div class="reason-emoji">💖</div>
+        <div class="reason-text">[ reason six ]</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ QUOTE ══════ -->
+<section class="quote-section">
+  <p class="quote-text">
+    "[ write a quote that means something to both of you — a song lyric, something she always says, a line from your fave movie, or your own words ]"
+  </p>
+  <p class="quote-attr">— [ source or "us" ] 🌸</p>
+</section>
+
+<!-- ══════ MEMORIES JAR ══════ -->
+<section class="memories-section">
+  <div class="section-inner">
+    <h2 class="section-title">our memory jar 🫙</h2>
+    <p class="section-sub">— click each tag to unfold a memory —</p>
+    <div class="jar-container">
+      <div class="memory-tag" onclick="openMemory('mem1')">[ memory name 1 ]</div>
+      <div class="memory-tag" onclick="openMemory('mem2')">[ memory name 2 ]</div>
+      <div class="memory-tag" onclick="openMemory('mem3')">[ memory name 3 ]</div>
+      <div class="memory-tag" onclick="openMemory('mem4')">[ memory name 4 ]</div>
+      <div class="memory-tag" onclick="openMemory('mem5')">[ memory name 5 ]</div>
+      <div class="memory-tag" onclick="openMemory('mem6')">[ memory name 6 ]</div>
+    </div>
+  </div>
+</section>
+
+<!-- Memory Popups -->
+<div class="memory-popup" id="memPopup" onclick="closeMemory(event)">
+  <div class="memory-card-pop" onclick="event.stopPropagation()">
+    <div class="mem-emoji" id="memEmoji">🌸</div>
+    <div class="mem-title" id="memTitle">memory title</div>
+    <div class="mem-text" id="memText">memory description</div>
+    <button class="mem-close-btn" onclick="closeMemory()">close 💕</button>
+  </div>
+</div>
+
+<!-- ══════ SECOND PHOTO STRIP ══════ -->
+<section class="gallery2-section">
+  <div class="section-inner">
+    <h2 class="section-title">more of us 🎞️</h2>
+    <p class="section-sub">— add more photos below —</p>
+    <div class="sticker-row">
+
+      <div class="sticker-frame">
+        <div class="sticker-img-area">
+          <span style="font-size:1.5rem">💗</span>
+          <span>photo here</span>
+          <!-- <img src="photo5.jpg" alt=""> -->
+        </div>
+        <div class="sticker-label">[ caption ]</div>
+      </div>
+
+      <div class="sticker-frame">
+        <div class="sticker-img-area">
+          <span style="font-size:1.5rem">🌷</span>
+          <span>photo here</span>
+        </div>
+        <div class="sticker-label">[ caption ]</div>
+      </div>
+
+      <div class="sticker-frame">
+        <div class="sticker-img-area">
+          <span style="font-size:1.5rem">✨</span>
+          <span>photo here</span>
+        </div>
+        <div class="sticker-label">[ caption ]</div>
+      </div>
+
+      <div class="sticker-frame">
+        <div class="sticker-img-area">
+          <span style="font-size:1.5rem">🎀</span>
+          <span>photo here</span>
+        </div>
+        <div class="sticker-label">[ caption ]</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-heart">💗</div>
+  <div class="footer-names">[ your name ] & [ her name ]</div>
+  <p class="footer-sub">best friends forever and ever and ever 🌸</p>
+  <p style="margin-top:0.5rem; color: rgba(255,255,255,0.25); font-size:0.75rem;">made with so much love, just for you</p>
+</footer>
+
+<!-- ══════ SCRIPTS ══════ -->
+<script>
+// ── Falling petals
+const petalEmojis = ['🌸','🌺','💮','🌷','💕','✿'];
+const petalContainer = document.getElementById('petals');
+function createPetal() {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.fontSize = (1 + Math.random() * 1.2) + 'rem';
+  p.style.animationDuration = (6 + Math.random() * 8) + 's';
+  p.style.animationDelay = (Math.random() * 5) + 's';
+  petalContainer.appendChild(p);
+  setTimeout(() => p.remove(), 14000);
+}
+setInterval(createPetal, 600);
+for (let i = 0; i < 12; i++) setTimeout(createPetal, i * 200);
+
+// ── Sparkle cursor trail
+const sparkles = ['✨','🌸','💕','⭐','🎀','💫'];
+document.addEventListener('mousemove', (e) => {
+  if (Math.random() > 0.85) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+    s.style.left = e.clientX + 'px';
+    s.style.top = e.clientY + 'px';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 800);
+  }
+});
+
+// ── Envelope / Letter
+function openLetter() {
+  document.getElementById('envSeal').style.opacity = '0';
+  document.getElementById('letterModal').classList.add('open');
+}
+function closeLetter(e) {
+  if (!e || e.target === document.getElementById('letterModal')) {
+    document.getElementById('letterModal').classList.remove('open');
+    setTimeout(() => { document.getElementById('envSeal').style.opacity = '1'; }, 300);
+  }
+}
+
+// ── Memories — EDIT THESE with your actual memories!
+const memories = {
+  mem1: {
+    emoji: '🌸',
+    title: '[ Memory Name 1 ]',
+    text: '[ Write about this memory here! What happened, where you were, why it was special. Make her feel all the feelings. ]'
+  },
+  mem2: {
+    emoji: '💕',
+    title: '[ Memory Name 2 ]',
+    text: '[ Write about this memory here! ]'
+  },
+  mem3: {
+    emoji: '✨',
+    title: '[ Memory Name 3 ]',
+    text: '[ Write about this memory here! ]'
+  },
+  mem4: {
+    emoji: '🎀',
+    title: '[ Memory Name 4 ]',
+    text: '[ Write about this memory here! ]'
+  },
+  mem5: {
+    emoji: '🌷',
+    title: '[ Memory Name 5 ]',
+    text: '[ Write about this memory here! ]'
+  },
+  mem6: {
+    emoji: '💖',
+    title: '[ Memory Name 6 ]',
+    text: '[ Write about this memory here! ]'
+  }
+};
+
+function openMemory(id) {
+  const m = memories[id];
+  document.getElementById('memEmoji').textContent = m.emoji;
+  document.getElementById('memTitle').textContent = m.title;
+  document.getElementById('memText').textContent = m.text;
+  document.getElementById('memPopup').classList.add('open');
+}
+function closeMemory(e) {
+  if (!e || e.target === document.getElementById('memPopup')) {
+    document.getElementById('memPopup').classList.remove('open');
+  }
+}
+</script>
+</body>
+</html>
